@@ -1,4 +1,5 @@
-use std::{env, fs};
+use std::env;
+use helpers;
 
 #[allow(dead_code)]
 #[derive(Debug)]
@@ -6,15 +7,6 @@ struct Elf {
     index: usize,
     calories: Vec<usize>,
     total_calories: usize,
-}
-
-fn get_input(args: Vec<String>) -> String {
-    if args.len() <= 1 {
-        panic!("Please provide input.");
-    }
-
-    let input_file = &args[1];
-    fs::read_to_string(input_file).expect("Could not read file.")
 }
 
 fn parse_elves(input: String) -> Vec<Elf> {
@@ -53,7 +45,7 @@ fn parse_elves(input: String) -> Vec<Elf> {
 }
 
 fn main() {
-    let content = get_input(env::args().collect());
+    let content = helpers::get_input(env::args().collect());
 
     let mut elves = parse_elves(content);
     elves.sort_by(|a, b| b.total_calories.cmp(&a.total_calories));

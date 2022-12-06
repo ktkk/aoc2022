@@ -24,6 +24,6 @@ jobs:
         MAX_DAY=2
         while [ $DAY -le $MAX_DAY ]; do
           PROJECT=day$(printf %02d $DAY)
-          cargo run -p PROJECT -- PROJECT/input.txt
+          cargo run -p $PROJECT -- PROJECT/input.txt
           DAY=$(( DAY + 1 ))
         done

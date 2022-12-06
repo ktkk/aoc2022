@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  DAYS_COMPLETED: 2
 
 jobs:
   build:
@@ -21,8 +22,7 @@ jobs:
     - name: Run
       run: |
         DAY=1
-        MAX_DAY=2
-        while [ $DAY -le $MAX_DAY ]; do
+        while [ $DAY -le $DAYS_COMPLETED ]; do
           PROJECT=day$(printf %02d $DAY)
           cargo run -p $PROJECT -- $PROJECT/input.txt
           DAY=$(( DAY + 1 ))

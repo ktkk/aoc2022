@@ -1,0 +1,29 @@
+name: Build & run AOC
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: cargo build --verbose
+    - name: Run
+      run: |
+        DAY=1
+        MAX_DAY=2
+        while [ $DAY -le $MAX_DAY ]; do
+          PROJECT=day$(printf %02d $DAY)
+          cargo run -p PROJECT -- PROJECT/input.txt
+          DAY=$(( DAY + 1 ))
+        done
